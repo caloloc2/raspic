@@ -8,14 +8,14 @@ int main (void){
 	if (wiringPiSetup () == -1)
 	return 1 ;
 
-	pinMode (7, OUTPUT); // pin 4 salida - bomba
-	pinMode (0, OUTPUT); // pin 17 salida - servomotor
-	pinMode (2, OUTPUT); // pin 27 salida - ventilador
-	pinMode (3, OUTPUT); // pin 22 salida - led
+	pinMode (1, PWM_OUTPUT) ; // GPIO 12 salida - bomba PWM	
+	pinMode (0, OUTPUT); // GPIO 11 salida - servomotor
+	pinMode (2, OUTPUT); // GPIO 13 salida - ventilador
+	pinMode (3, OUTPUT); // GPIO 15 salida - led
 
-	pinMode (21, INPUT); // pin 5 entrada - fotocelda digital
-	pinMode (22, INPUT); // pin 6 entrada - sensor temperatura
-	pinMode (23, INPUT); // pin 13 entrada - sensor humedad
+	pinMode (21, INPUT); // GPIO 29 entrada - fotocelda digital
+	pinMode (22, INPUT); // GPIO 31 entrada - sensor temperatura
+	pinMode (23, INPUT); // GPIO 33 entrada - sensor humedad
 
 	unsigned short int contador = 0;	
 
@@ -44,9 +44,10 @@ int main (void){
 
 		contador+=1;
 		if (contador==120){
-			digitalWrite(7, 1);	
+			// EL VALOR DEL ANGULO DEPENDE DEL VALOR QUE SE ENVIE AL PWM (0-1024)
+			pwmWrite(1, 1024) ; // GIRA TODO
 			delay(10000);
-			digitalWrite(7, 0);	
+			pwmWrite(1, 0) ; // REGRESA TODO
 			contador = 0;
 		}
 		delay(500);
