@@ -43,7 +43,7 @@ int main (void){
 		}
 
 		contador+=1;
-		if (contador==120){
+		if (contador==120){ // este contador cuenta el minuto para activar, el valor de 120 depende del delay que se ponga (500 ms)
 			// EL VALOR DEL ANGULO DEPENDE DEL VALOR QUE SE ENVIE AL PWM (0-1024)
 			pwmWrite(1, 1024) ; // GIRA TODO
 			delay(10000);
