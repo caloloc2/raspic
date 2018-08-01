@@ -1,0 +1,15 @@
+sudo su -
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git
+git clone git://git.drogon.net/wiringPi
+cd wiringPi
+./build
+
+para ver la configuracion de los pines
+gpio readall
+
+git clone https://github.com/caloloc2/raspic
+cd raspic
+gcc -o control control.c -lwiringPi
+sudo ./control

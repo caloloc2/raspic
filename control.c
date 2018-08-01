@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <wiringPi.h>
+#include <wiringPi.h>
  
 int main (void){
 	printf ("Programa iniciado...\n");
 
-	/*if (wiringPiSetup () == -1)
+	if (wiringPiSetup () == -1)
 	return 1 ;
 
 	pinMode (7, OUTPUT); // pin 4 salida - bomba
@@ -15,14 +15,14 @@ int main (void){
 
 	pinMode (21, INPUT); // pin 5 entrada - fotocelda digital
 	pinMode (22, INPUT); // pin 6 entrada - sensor temperatura
-	pinMode (23, INPUT); // pin 13 entrada - sensor humedad*/
+	pinMode (23, INPUT); // pin 13 entrada - sensor humedad
 
 	unsigned short int contador = 0;	
 
 	while(1){	
 		
 		// VERIFICA EL VALOR DE LA FOTOCELDA
-		/*if (digitalRead(21)==1){
+		if (digitalRead(21)==1){
 			digitalWrite(0, 1);
 		}else{
 			digitalWrite(0, 0);
@@ -40,15 +40,13 @@ int main (void){
 			digitalWrite(3, 1);
 		}else{
 			digitalWrite(3, 0);
-		}*/
+		}
 
 		contador+=1;
 		if (contador==120){
-			//digitalWrite(7, 1);	
-			printf("prende bomba por 10 segundos...\n");
+			digitalWrite(7, 1);	
 			delay(10000);
-			//digitalWrite(7, 0);	
-			printf("apaga bomba\n");
+			digitalWrite(7, 0);	
 			contador = 0;
 		}
 		delay(500);
